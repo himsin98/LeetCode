@@ -22,7 +22,6 @@ class Solution {
         while(!stack.isEmpty()){
             sb.append(stack.pop());
         }
-        System.out.println(sb.toString());
         return sb.toString();
     }
 }
