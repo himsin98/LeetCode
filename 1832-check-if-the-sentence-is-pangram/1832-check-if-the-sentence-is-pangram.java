@@ -1,11 +1,8 @@
 class Solution {
     public boolean checkIfPangram(String sentence) {
-        int[] arr = new int[26];
-        for(int i = 0; i<sentence.length(); i++){
-            arr[sentence.charAt(i)-'a']++;
-        }
-        for(int i = 0; i<26; i++){
-            if(arr[i]==0)
+        for(int i=1;i<=26;i++){
+            char ch=(char)(96+i);
+            if(sentence.indexOf(ch)==-1)
                 return false;
         }
         return true;
