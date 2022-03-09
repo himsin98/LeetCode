@@ -1,26 +1,16 @@
 class Solution {
     public int longestCommonSubsequence(String s, String t) {
-        int[][] mem = new int[s.length()][t.length()];
-        for(int i = 0; i< s.length(); i++){
-            Arrays.fill(mem[i], -1);
-        }
+        int[][] dp = new int[s.length()+1][t.length()+1];
         
-        return lcs(s, t, 0, 0, mem);
-    }
-    
-    private int lcs(String s1, String s2, int l1, int l2, int[][] mem){
-        if(l1 == s1.length() || l2 == s2.length())
-            return 0;
-        if(mem[l1][l2] != -1)
-            return mem[l1][l2];
-        
-        if(s1.charAt(l1) == s2.charAt(l2)){
-            mem[l1][l2] = 1 + lcs(s1, s2, l1+1, l2+1, mem);
-        }else{
-            //String s = lcs(s1, s2, l1+1, l2, mem);
-            //String t = lcs(s1, s2, l1, l2+1, mem);
-            mem[l1][l2] = Math.max(lcs(s1, s2, l1+1, l2, mem), lcs(s1, s2, l1, l2+1, mem));
+        for(int i = 1; i<=s.length(); i++){
+            for(int j = 1; j<=t.length(); j++){
+                if(s.charAt(i-1) == t.charAt(j-1)){
+                    dp[i][j] = 1 + dp[i-1][j-1];
+                }else{
+                    dp[i][j] = Math.max(dp[i][j-1], dp[i-1][j]);
+                }
+            }
         }
-        return mem[l1][l2];
+        return dp[s.length()][t.length()];
     }
 }
