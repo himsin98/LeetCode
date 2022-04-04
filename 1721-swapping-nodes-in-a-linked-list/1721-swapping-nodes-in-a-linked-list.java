@@ -10,9 +10,6 @@
  */
 class Solution {
     public ListNode swapNodes(ListNode head, int k) {
-        if(head == null)
-            return head;
-        int first = k;
         int len = 0;
         ListNode curr = head;
         while(curr != null){
@@ -21,7 +18,7 @@ class Solution {
         }
         ListNode temp1=head, temp2=head;
         int last = len - k + 1;
-        if(last == first)
+        if(last == k)
             return head;
         curr = head;
         int count = 0;
